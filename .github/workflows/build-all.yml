@@ -1,0 +1,40 @@
+name: Build All
+
+on:
+  workflow_run:
+    workflows: ["Auto Clean"]
+    types:
+      - completed
+  workflow_dispatch:
+    inputs:
+      PACKAGE:
+        description: 'Add packages manually, seperate by \n'
+        required: false
+        type: string
+
+permissions: write-all
+
+jobs:
+  config:
+    name: ${{matrix.CONFIG}}
+    strategy:
+      fail-fast: false
+      #max-parallel: 3
+      matrix:
+        CONFIG: [IPQ60XX-WIFI, IPQ807X-WIFI, MEDIATEK, X86]
+        SOURCE: [immortalwrt/immortalwrt]
+        BRANCH: [master]
+
+    uses: ./.github/workflows/build-core.yml
+    with:
+      WRT_CONFIG: ${{matrix.CONFIG}}
+      WRT_THEME: bootstrap
+      WRT_NAME: ImmortalWRT
+      WRT_SSID: ImmortalWRT
+      WRT_NETPW: 12345678
+      WRT_IP: 192.168.1.1
+      WRT_USRPW: (empty)
+      WRT_REPO: https://github.com/${{matrix.SOURCE}}.git
+      WRT_BRANCH: ${{matrix.BRANCH}}
+      WRT_SOURCE: ${{matrix.SOURCE}}
+      WRT_PACKAGE: ${{inputs.PACKAGE}}
