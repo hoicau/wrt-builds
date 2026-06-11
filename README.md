@@ -8,7 +8,7 @@
 
 ### Firmware
 
-- [immortalwrt/immortalwrt](https://github.com/immortalwrt/immortalwrt)
+[immortalwrt/immortalwrt](https://github.com/immortalwrt/immortalwrt)
 
 ### Building Tool
 
@@ -16,11 +16,11 @@
 
 ## Download
 
-See [Release](https://github.com/hoicau/wrt-builds/releases)
+See [Release](https://github.com/hoicau/wrt-build/releases)
 
 ## Post-installation Script
 
 
 ```
-curl --sSfL https://github.com/hoicau/wrt-builds/raw/refs/heads/main/post-install.sh | ash
+curl -sSfL https://github.com/hoicau/wrt-build/raw/refs/heads/main/post-install.sh | ash
 ```
